@@ -11,19 +11,17 @@ typedef enum {
 } CharClass;
 
 static const State transition_table[8][5] = {
-    //      DIGIT  DOT    E      SIGN   OTHER
-    /*Q0*/ { Q1, ERR, ERR, ERR, ERR },
-    /*Q1*/ { Q1, Q2, Q4, ERR, ERR },
-    /*Q2*/ { Q3, ERR, ERR, ERR, ERR },
-    /*Q3*/ { Q3, ERR, Q4, ERR, ERR },
-    /*Q4*/ { Q6, ERR, ERR, Q5, ERR },
-    /*Q5*/ { Q6, ERR, ERR, ERR, ERR },
-    /*Q6*/ { Q6, ERR, ERR, ERR, ERR },
-    /*ERR*/ { ERR, ERR, ERR, ERR, ERR }
+    /*Q0*/  {Q1, ERR, ERR, ERR, ERR},
+    /*Q1*/  {Q1, Q2, Q4, ERR, ERR},
+    /*Q2*/  {Q3, ERR, ERR, ERR, ERR},
+    /*Q3*/  {Q3, ERR, Q4, ERR, ERR},
+    /*Q4*/  {Q6, ERR, ERR, Q5, ERR},
+    /*Q5*/  {Q6, ERR, ERR, ERR, ERR},
+    /*Q6*/  {Q6, ERR, ERR, ERR, ERR},
+    /*ERR*/ {ERR, ERR, ERR, ERR, ERR}
 };
 
-int get_char_class(char c)
-{
+int get_char_class(char c) {
     if (isdigit(c))
         return CLASS_DIGIT;
     if (c == '.')
@@ -35,8 +33,7 @@ int get_char_class(char c)
     return CLASS_OTHER;
 }
 
-int match(const char* str)
-{
+int match(const char *str) {
     State cur = Q0;
     for (int i = 0; str[i] != '\0'; i++) {
         int class = get_char_class(str[i]);
@@ -47,15 +44,14 @@ int match(const char* str)
     return (cur == Q1 || cur == Q3 || cur == Q6);
 }
 
-void print_transition_table(void)
-{
+void print_transition_table(void) {
     printf("\n=== ТАБЛИЦА ПЕРЕХОДОВ ДКА ===\n");
     printf("---------------------------------------------\n");
     printf("Состояние | digit |  .   |  E   | + / - | другое\n");
     printf("---------------------------------------------\n");
 
-    const char* state_names[] = { "Q0", "Q1", "Q2", "Q3", "Q4", "Q5", "Q6", "ERR" };
-    const char* class_names[] = { "digit", ".", "E", "+/-", "other" };
+    const char *state_names[] = {"Q0", "Q1", "Q2", "Q3", "Q4", "Q5", "Q6", "ERR"};
+    const char *class_names[] = {"digit", ".", "E", "+/-", "other"};
 
     for (int s = 0; s <= ERR; s++) {
         printf("   %-2s     |", state_names[s]);
@@ -68,7 +64,7 @@ void print_transition_table(void)
         }
         printf("\n");
     }
-    printf	"-----\n");
+    printf("---------------------------------------------\n");
     printf("Допускающие состояния: Q1, Q3, Q6\n");
-    printf("=====\n");
+    printf("=============================================\n");
 }
