@@ -2,7 +2,8 @@
 #include <ctype.h>
 #include <stdlib.h>
 
-int is_number(const char* str) {
+int is_number(const char* str)
+{
     if (str == NULL || *str == '\0') {
         return 0;
     }

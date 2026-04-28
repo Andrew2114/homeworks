@@ -3,7 +3,8 @@
 #include <stdlib.h>
 #include <string.h>
 
-Table* create_table(void) {
+Table* create_table(void)
+{
     Table* t = malloc(sizeof(Table));
     if (t == NULL)
         return NULL;
@@ -13,7 +14,8 @@ Table* create_table(void) {
     return t;
 }
 
-void free_table(Table* t) {
+void free_table(Table* t)
+{
     if (t == NULL) {
         return;
     }
@@ -29,7 +31,8 @@ void free_table(Table* t) {
     free(t);
 }
 
-int add_row(Table* t, const char* line) {
+int add_row(Table* t, const char* line)
+{
     if (t == NULL || line == NULL)
         return -1;
 
@@ -76,7 +79,8 @@ int add_row(Table* t, const char* line) {
     return 0;
 }
 
-Table* parse_csv_file(const char* filename) {
+Table* parse_csv_file(const char* filename)
+{
     FILE* f = fopen(filename, "r");
     if (f == NULL) {
         return NULL;

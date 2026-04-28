@@ -4,7 +4,8 @@
 #include <stdlib.h>
 #include <string.h>
 
-static int* calculate_column_widths(Table* t) {
+static int* calculate_column_widths(Table* t)
+{
     int* col_width = malloc(sizeof(int) * t->cols);
     if (col_width == NULL)
         return NULL;
@@ -24,7 +25,8 @@ static int* calculate_column_widths(Table* t) {
     return col_width;
 }
 
-static void print_horizontal_line(FILE* f, int* col_width, int cols, char line_char) {
+static void print_horizontal_line(FILE* f, int* col_width, int cols, char line_char)
+{
     fprintf(f, "+");
     for (int j = 0; j < cols; j++) {
         for (int k = 0; k < col_width[j]; k++) {
@@ -35,7 +37,8 @@ static void print_horizontal_line(FILE* f, int* col_width, int cols, char line_c
     fprintf(f, "\n");
 }
 
-static void print_header(FILE* f, Table* t, int* col_width) {
+static void print_header(FILE* f, Table* t, int* col_width)
+{
     print_horizontal_line(f, col_width, t->cols, '=');
     fprintf(f, "|");
     for (int j = 0; j < t->cols; j++) {
@@ -45,7 +48,8 @@ static void print_header(FILE* f, Table* t, int* col_width) {
     print_horizontal_line(f, col_width, t->cols, '=');
 }
 
-static void print_data_rows(FILE* f, Table* t, int* col_width) {
+static void print_data_rows(FILE* f, Table* t, int* col_width)
+{
     for (int i = 1; i < t->rows; i++) {
         fprintf(f, "|");
         for (int j = 0; j < t->cols; j++) {
@@ -63,7 +67,8 @@ static void print_data_rows(FILE* f, Table* t, int* col_width) {
     }
 }
 
-int print_table_to_file_with_header(Table* t, const char* filename) {
+int print_table_to_file_with_header(Table* t, const char* filename)
+{
     if (t == NULL || t->rows == 0)
         return -1;
 
@@ -86,7 +91,7 @@ int print_table_to_file_with_header(Table* t, const char* filename) {
     return 0;
 }
 
-int print_table_to_file(Table* t, const char* filename) {
+int print_table_to_file(Table* t, const char* filename)
+{
     return print_table_to_file_with_header(t, filename);
 }
-

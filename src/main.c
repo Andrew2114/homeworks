@@ -3,11 +3,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int main(int argc, char* argv[]) {
+int main(int argc, char* argv[])
+{
     const char* input_file = "input.csv";
     const char* output_file = "output.txt";
 
-     if (argc > 1) {
+    if (argc > 1) {
         input_file = argv[1];
     }
     if (argc > 2) {
