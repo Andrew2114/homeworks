@@ -1,12 +1,12 @@
 #pragma once
 
-#include "graph.h"
 #include "candidates.h"
+#include "graph.h"
 
 typedef struct {
-    int* owner;           
-    int num_states;       
-    int total_cities;     
+    int* owner;
+    int num_states;
+    int total_cities;
 } ExpansionResult;
 
 ExpansionResult* expand_states(Graph* graph, int* capitals, int num_capitals);
