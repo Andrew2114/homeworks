@@ -5,8 +5,8 @@
 #include <string.h>
 
 typedef struct Node {
-    char code[4];    
-    char name[256];   
+    char code[4];
+    char name[256];
     struct Node* left;
     struct Node* right;
     int height;
